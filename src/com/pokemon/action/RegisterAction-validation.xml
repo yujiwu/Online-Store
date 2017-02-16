@@ -1,0 +1,38 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="username">
+		<field-validator type="requiredstring">
+            <message>Username cannot be empty</message>
+        </field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">6</param>
+			<param name="maxLength">15</param>
+			<param name="trim">true</param>
+			<message>Username should be 6-15 characters long</message>
+		</field-validator>
+	</field>
+	
+	<field name="password">
+		<field-validator type="requiredstring">
+            <message>Password cannot be empty</message>
+        </field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">6</param>
+			<param name="maxLength">15</param>
+			<param name="trim">true</param>
+			<message>Password should be 6-15 characters long</message>
+		</field-validator>
+	</field>
+	
+	<field name="email">
+	  	<field-validator type="requiredstring">
+            <message>Email cannot be empty</message>
+        </field-validator>
+		<field-validator type="email">
+			<message>The format of the email is incorrect</message>
+		</field-validator>
+	</field>
+</validators>

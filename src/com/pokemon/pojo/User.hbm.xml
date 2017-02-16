@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-7-22 13:53:41 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.pokemon.pojo.User" table="USER">
+        <id name="userId" type="java.lang.Integer">
+            <column name="USER_ID" />
+            <generator class="native" />
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="role" type="java.lang.String">
+            <column name="ROLE" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <set name="items" table="USER_ITEM" lazy="true">
+            <key>
+                <column name="USER_ID" />
+            </key>
+            <many-to-many class="com.pokemon.pojo.Item" column="ITEM_ID"/>
+        </set>
+        <set name="orders" table="ORDER" inverse="true" lazy="true" cascade="save-update" batch-size="10">
+            <key>
+                <column name="USER_ID" />
+            </key>
+            <one-to-many class="com.pokemon.pojo.Order" />
+        </set>
+    </class>
+</hibernate-mapping>

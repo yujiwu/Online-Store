@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+    
+        <action name="LoginAction" class="com.pokemon.action.LoginAction">
+        	<result>Main.jsp</result>
+        	<result name="fail">Login.jsp</result>
+        </action>
+	
+        <action name="RegisterAjax" 
+        		class="com.pokemon.action.RegisterAjax">
+        	<result type="stream">
+        		<param name="contentType">text/html</param>
+        		<param name="inputName">inputStream</param>
+        	</result>
+        </action>
+        
+        <action name="RegisterAction" class="com.pokemon.action.RegisterAction">
+        	<result type="redirect">Login.jsp</result>
+        	<result name="input">Register.jsp</result>
+        </action>
+        
+        <action name="ShoppingCartAction" class="com.pokemon.action.ShoppingCartAction">
+        	<result name="ShoppingCart">ShoppingCart.jsp</result>
+        	<result name="ListItems">ListItems.jsp</result>
+        </action>
+        
+        <action name="DeleteItemsAjax"
+        		class="com.pokemon.action.DeleteItemsAjax">
+        	<result type="stream">
+        		<param name="contentType">text/html</param>
+        		<param name="inputName">inputStream</param>
+        	</result>
+        </action>
+        
+        <action name="AddItemsAction" class="com.pokemon.action.AddItemsAction">
+        	<interceptor-ref name="fileUpload">
+        		<param name="fileUpload.maximumSize">1024*1024</param>
+				<param name="fileUpload.allowedTypes">image/jpeg,image/png,image/gif</param>
+				<param name="fileUpload.allowedExtensions">jpg,png</param>
+        	</interceptor-ref>
+        	<interceptor-ref name="defaultStack"></interceptor-ref>
+        	<result type="redirect">AddItems.jsp</result>
+        	<result name="input">AddItems.jsp</result>
+        </action>
+        
+        <action name="ShoppingHistoryAction" 
+        	class="com.pokemon.action.ShoppingHistoryAction">
+        	<result>ShoppingHistory.jsp</result>
+        </action>
+        
+        <action name="SignOutAction" 
+        	class="com.pokemon.action.SignOutAction">
+        	<result>Main.jsp</result>
+        </action>
+        
+        <action name="CartPriceCountAjax" 
+        	class="com.pokemon.action.CartPriceCountAjax">
+        	<result type="stream">
+        		<param name="contentType">text/html</param>
+        		<param name="inputName">inputStream</param>
+        	</result>
+        </action>
+        
+        <action name="PayAction" 
+        	class="com.pokemon.action.PayAction">
+        	<result>Success.jsp</result>
+        	<result name="input">ShoppingCart.jsp</result>
+        </action>
+        
+        <action name="CategoryAction"
+        	class="com.pokemon.action.CategoryAction">
+        	<result>Main.jsp</result>
+        </action>
+        
+        <action name="AddToCartAjax" 
+        	class="com.pokemon.action.AddToCartAjax">
+        	<result type="stream">
+        		<param name="contentType">text/html</param>
+        		<param name="inputName">inputStream</param>
+        	</result>
+        </action>
+    </package>
+</struts>

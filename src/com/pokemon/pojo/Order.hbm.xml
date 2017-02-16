@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-7-22 13:53:41 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.pokemon.pojo.Order" table="ORDERS">
+        <id name="orderId" type="java.lang.Integer">
+            <column name="ORDER_ID" />
+            <generator class="native" />
+        </id>
+        <property name="date" type="java.lang.String">
+            <column name="DATE" />
+        </property>
+        <property name="totalPrice" type="java.lang.String">
+            <column name="TOTAL_PRICE" />
+        </property>
+        <many-to-one name="user" class="com.pokemon.pojo.User">
+            <column name="USER_ID" />
+        </many-to-one>
+        <set name="items" table="ORDERS_ITEM" fetch="join">
+            <key column="ORDER_ID"/>
+            <many-to-many class="com.pokemon.pojo.Item" column="ITEM_ID"/>
+        </set>
+    </class>
+</hibernate-mapping>

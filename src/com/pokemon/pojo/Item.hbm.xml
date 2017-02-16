@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-7-22 13:53:41 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.pokemon.pojo.Item" table="ITEM">
+        <id name="itemId" type="java.lang.Integer">
+            <column name="ITEM_ID" />
+            <generator class="native" />
+        </id>
+        <property name="itemName" type="java.lang.String">
+            <column name="ITEM_NAME" />
+        </property>
+        <property name="price" type="java.lang.Integer">
+            <column name="PRICE" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="category" type="java.lang.String">
+            <column name="CATEGORY" />
+        </property>
+        <property name="photoLoc" type="java.lang.String">
+            <column name="PHOTO_LOC" />
+        </property>
+        <set name="users" table="USER_ITEM" inverse="true">
+            <key>
+                <column name="ITEM_ID" />
+            </key>
+            <many-to-many class="com.pokemon.pojo.User" column="USER_ID"/>
+        </set>
+    </class>
+</hibernate-mapping>
